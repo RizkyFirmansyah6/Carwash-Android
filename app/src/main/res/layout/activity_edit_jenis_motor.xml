@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|center_vertical"
+    tools:context=".Admin.EditJenisMotorActivity">
+
+    <ImageView
+        android:id="@+id/img_editjenismotor"
+        android:layout_centerHorizontal="true"
+        android:layout_width="180dp"
+        android:layout_height="145dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tx_linkimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Link image"/>
+
+        <LinearLayout
+            android:layout_below="@+id/tx_linkimg"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_linkphotojenismotor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="9"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btn_cek"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:text="Cek" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txnm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"/>
+        <EditText
+            android:id="@+id/et_namajenismotor"
+            android:layout_below="@+id/txnm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txhrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga"/>
+        <EditText
+            android:id="@+id/et_hargajenismotor"
+            android:layout_below="@+id/txhrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="250dp"
+        android:gravity="center_horizontal"
+        android:layout_height="80dp"
+        >
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="30dp"
+            app:backgroundTint="#DD5246" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_updatejenismotor"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="30dp"
+            android:clickable="true"
+            app:backgroundTint="#1DA261"
+            app:useCompatPadding="false" />
+    </LinearLayout>
+
+</LinearLayout>

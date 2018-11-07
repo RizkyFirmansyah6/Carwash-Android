@@ -1,0 +1,94 @@
+package com.projctwash.com.proyek2_carwash.Admin;
+
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.projctwash.com.proyek2_carwash.Model.PostPutGetKendaraan;
+import com.projctwash.com.proyek2_carwash.R;
+import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
+import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class EditJenisMotorActivity extends AppCompatActivity {
+
+    Intent intn ;
+    EditText et_link,nama,harga;
+    FloatingActionButton btn_back,btn_update;
+    Button btn_cek;
+    ImageView img;
+    ApiInterface mApiInterface;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_jenis_motor);
+
+        intn = getIntent();
+        et_link = findViewById(R.id.et_linkphotojenismotor);
+        nama = findViewById(R.id.et_namajenismotor);
+        harga = findViewById(R.id.et_hargajenismotor);
+        img = findViewById(R.id.img_editjenismotor);
+        btn_back = findViewById(R.id.btn_back);
+        btn_update = findViewById(R.id.btn_updatejenismotor);
+        btn_cek = findViewById(R.id.btn_cek);
+
+        Glide.with(getApplicationContext()).asBitmap().load(intn.getStringExtra("img")).into(img);
+        et_link.setText(intn.getStringExtra("img"));
+        nama.setText(intn.getStringExtra("nama"));
+        harga.setText(intn.getStringExtra("harga"));
+
+        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        btn_cek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Glide.with(getApplicationContext()).asBitmap().load(et_link.getText().toString()).into(img);
+                Toast.makeText(getApplicationContext(),"Checking",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call<PostPutGetKendaraan> updateJnsKendaraan = mApiInterface.putKendaraan(
+                                    intn.getStringExtra("id"),
+                                    nama.getText().toString(),
+                                    harga.getText().toString(),
+                                    et_link.getText().toString()
+                            );
+                updateJnsKendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
+                    @Override
+                    public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
+                        AdminMainActivity.admjenisken.initialize();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+}

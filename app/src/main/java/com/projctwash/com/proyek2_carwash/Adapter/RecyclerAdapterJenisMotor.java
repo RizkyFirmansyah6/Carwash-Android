@@ -11,17 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.projctwash.com.proyek2_carwash.Model.JenisMotor;
+import com.projctwash.com.proyek2_carwash.Model.Kendaraan;
 import com.projctwash.com.proyek2_carwash.R;
 
 import java.util.List;
 
 public class RecyclerAdapterJenisMotor extends RecyclerView.Adapter<RecyclerAdapterJenisMotor.MyViewHolder> {
 
-    private List<JenisMotor> mMotor;
+    private List<Kendaraan> mMotor;
     private Context mContext;
 
-    public RecyclerAdapterJenisMotor(List<JenisMotor> mMotor, Context mContext) {
+    public RecyclerAdapterJenisMotor(List<Kendaraan> mMotor, Context mContext) {
         this.mMotor = mMotor;
         this.mContext = mContext;
     }
@@ -36,17 +36,17 @@ public class RecyclerAdapterJenisMotor extends RecyclerView.Adapter<RecyclerAdap
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int i) {
-        final JenisMotor jMo = mMotor.get(i);
+        final Kendaraan jMo = mMotor.get(i);
 
         holder.namajenis.setText(jMo.getNama());
-        Glide.with(mContext).asBitmap().load("https://image.tmdb.org/t/p/w600_and_h900_bestv2/yTZQkSsxUFJZJe67IenRM0AEklc.jpg").into(holder.img);
+        Glide.with(mContext).asBitmap().load(jMo.getImg()).into(holder.img);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext,"ini : "+jMo.getHarga(),Toast.LENGTH_SHORT).show();
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(mContext,"ini : "+jMo.getHarga(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
