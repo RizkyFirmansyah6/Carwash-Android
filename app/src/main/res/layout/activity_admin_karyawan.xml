@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Admin.AdminMainActivity">
+    tools:context=".Admin.AdminKaryawanActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -13,25 +13,23 @@
         android:layout_marginHorizontal="3dp">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcycler_jenismotor"
+            android:id="@+id/rcycler_karyawan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_addmotor"
+            android:id="@+id/btn_addkaryawan"
             android:clickable="true"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/add"
-            android:scaleType="centerCrop"
+            android:src="@drawable/user_add"
+            android:scaleType="centerInside"
             />
 
     </android.support.design.widget.CoordinatorLayout>
-
-
     <View
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"

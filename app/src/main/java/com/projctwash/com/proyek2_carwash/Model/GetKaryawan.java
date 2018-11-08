@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class GetKendaraan {
+public class GetKaryawan {
     @SerializedName("status")
     String status;
     @SerializedName("result")
-    List<Kendaraan> listDataKendaraan;
+    List<Karyawan> listDataKaryawan;
     @SerializedName("message")
     String message;
 
@@ -18,16 +18,18 @@ public class GetKendaraan {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<Karyawan> getListDataKaryawan() {
+        return listDataKaryawan;
+    }
+    public void setListDataKaryawan(List<Karyawan> listDataKaryawan) {
+        this.listDataKaryawan = listDataKaryawan;
+    }
+
     public String getMessage() {
         return message;
     }
     public void setMessage(String message) {
         this.message = message;
-    }
-    public List<Kendaraan> getListDataKendaraan() {
-        return listDataKendaraan;
-    }
-    public void setListDataKendaraan(List<Kendaraan> listDataKendaraan) {
-        this.listDataKendaraan = listDataKendaraan;
     }
 }

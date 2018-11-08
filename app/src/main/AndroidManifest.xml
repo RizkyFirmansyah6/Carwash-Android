@@ -20,7 +20,11 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".JenisMotorActivity" />
-        <activity android:name=".Admin.EditJenisMotorActivity"></activity>
+        <activity android:name=".Admin.EditJenisMotorActivity" />
+        <activity android:name=".Admin.NewJenisMotorActivity" />
+        <activity android:name=".Admin.AdminKaryawanActivity" />
+        <activity android:name=".Admin.NewKaryawanActivity" />
+        <activity android:name=".Admin.EditKaryawanActivity"></activity>
     </application>
 
 </manifest>

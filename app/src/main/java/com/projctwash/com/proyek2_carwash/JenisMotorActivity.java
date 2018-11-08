@@ -33,32 +33,12 @@ public class JenisMotorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jenis_motor);
 
-        mRecyclerView = findViewById(R.id.rcycler_jenismotor);
-        mLayoutManager = new GridLayoutManager(this,2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-        initialize();
     }
 
-    public void initialize(){
-        Call<GetKendaraan> gKen = mApiInterface.getKendaraan();
 
-        gKen.enqueue(new Callback<GetKendaraan>() {
-            @Override
-            public void onResponse(Call<GetKendaraan> call, Response<GetKendaraan> response) {
-
-                List<Kendaraan> mJMotor = response.body().getListDataKendaraan();
-                Log.d("Retrofit Get", "Jumlah data Kontak: " +String.valueOf(mJMotor.size()));
-
-                mAdapter = new RecyclerAdapterJenisMotor(mJMotor,getApplicationContext());
-                mRecyclerView.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<GetKendaraan> call, Throwable t) {
-                Log.e("Retrofit Get", t.toString());
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

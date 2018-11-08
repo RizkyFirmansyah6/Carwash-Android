@@ -1,6 +1,7 @@
 package com.projctwash.com.proyek2_carwash.Rest;
 
 
+import com.projctwash.com.proyek2_carwash.Model.GetKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutGetKendaraan;
 
@@ -15,7 +16,7 @@ import retrofit2.http.PUT;
 public interface ApiInterface {
 
 //    Kendaraan
-    @GET("Kendaraan_android")
+    @GET("Kendaraan")
     Call<GetKendaraan> getKendaraan();
 
     @FormUrlEncoded
@@ -30,7 +31,30 @@ public interface ApiInterface {
                                         @Field("harga") String harga,
                                         @Field("img") String img);
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "kontak", hasBody = true)
-    Call<PostPutGetKendaraan> deleteKontak(@Field("id") String id);
+    @HTTP(method = "DELETE", path = "Kendaraan", hasBody = true)
+    Call<PostPutGetKendaraan> deleteKendaraan(@Field("id") String id);
 //      Kendaraan END
+
+//    Karyawan Start
+    @GET("Karyawan")
+    Call<GetKaryawan> getKaryawan();
+
+    @FormUrlEncoded
+    @POST("Karyawan")
+    Call<PostPutGetKendaraan> postKaryawan(@Field("nama") String nama,
+                                           @Field("nohp") String nohp,
+                                           @Field("alamat") String alamat,
+                                           @Field("password") String password);
+    @FormUrlEncoded
+    @PUT("Karyawan")
+    Call<PostPutGetKendaraan> putKaryawan(@Field("id") String id,
+                                          @Field("nama") String nama,
+                                          @Field("nohp") String nohp,
+                                          @Field("alamat") String alamat,
+                                          @Field("password") String password);
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "Karyawan", hasBody = true)
+    Call<PostPutGetKendaraan> deleteKaryawan(@Field("id") String id);
+//  Karyawan END
+
 }

@@ -26,7 +26,6 @@ public class RecyclerAdapterJenisMotor extends RecyclerView.Adapter<RecyclerAdap
         this.mContext = mContext;
     }
 
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_jenis_motor, parent, false);
@@ -40,20 +39,12 @@ public class RecyclerAdapterJenisMotor extends RecyclerView.Adapter<RecyclerAdap
 
         holder.namajenis.setText(jMo.getNama());
         Glide.with(mContext).asBitmap().load(jMo.getImg()).into(holder.img);
-
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(mContext,"ini : "+jMo.getHarga(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override
     public int getItemCount() {
         return mMotor.size();
     }
-
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;

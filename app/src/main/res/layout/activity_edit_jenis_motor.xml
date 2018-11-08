@@ -87,11 +87,15 @@
         >
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_back_ed"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="30dp"
+            android:clickable="true"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
             app:backgroundTint="#DD5246" />
 
         <android.support.design.widget.FloatingActionButton
@@ -101,8 +105,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="30dp"
             android:clickable="true"
-            app:backgroundTint="#1DA261"
-            app:useCompatPadding="false" />
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/check"
+            app:backgroundTint="#1DA261" />
     </LinearLayout>
 
 </LinearLayout>
