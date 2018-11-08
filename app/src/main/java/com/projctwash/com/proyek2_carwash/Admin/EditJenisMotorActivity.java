@@ -1,8 +1,11 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,9 +27,10 @@ import retrofit2.Response;
 
 public class EditJenisMotorActivity extends AppCompatActivity {
 
+    Context mcon;
     Intent intn ;
     EditText et_link,nama,harga;
-    FloatingActionButton btn_back,btn_update;
+    FloatingActionButton btn_delete,btn_update;
     Button btn_cek;
     ImageView img;
     ApiInterface mApiInterface;
@@ -37,11 +41,12 @@ public class EditJenisMotorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_jenis_motor);
 
         intn = getIntent();
+        mcon = this;
         et_link = findViewById(R.id.et_linkphotojenismotor);
         nama = findViewById(R.id.et_namajenismotor);
         harga = findViewById(R.id.et_hargajenismotor);
         img = findViewById(R.id.img_editjenismotor);
-        btn_back = findViewById(R.id.btn_back_ed);
+        btn_delete = findViewById(R.id.btn_back_ed);
         btn_update = findViewById(R.id.btn_updatejenismotor);
         btn_cek = findViewById(R.id.btn_cek);
 
@@ -85,10 +90,36 @@ public class EditJenisMotorActivity extends AppCompatActivity {
             }
         });
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                AlertDialog.Builder alertDlg = new AlertDialog.Builder(mcon);
+                alertDlg.setMessage("Apa anda yakin '"+intn.getStringExtra("nama")+"', akan dihapus ?");
+                alertDlg.setCancelable(false);
+                alertDlg.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Call<PostPutGetKendaraan> deletekendaraan = mApiInterface.deleteKendaraan(intn.getStringExtra("id"));
+                        deletekendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
+                            @Override
+                            public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
+                                finish();
+                            }
+
+                            @Override
+                            public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+                alertDlg.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertDlg.create().show();
             }
         });
 

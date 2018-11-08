@@ -4,26 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.NewKaryawanActivity">
+    tools:context=".LoginUserActivity">
 
     <LinearLayout
         android:id="@+id/lay_fomkar"
-        android:layout_marginTop="55dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama"/>
-        <EditText
-            android:id="@+id/et_namakaryawan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="11"
-            android:inputType="textPersonName"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,16 +25,6 @@
             android:ems="11"
             android:inputType="phone"
             android:maxLength="14"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Alamat" />
-        <EditText
-            android:id="@+id/et_alamatkaryawan"
-            android:inputType="text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="11"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +48,7 @@
         android:weightSum="3">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_backkaryawan"
+            android:id="@+id/btn_back"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_weight="1"
@@ -81,16 +61,14 @@
             android:layout_height="60dp" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_createkaryawan"
+            android:id="@+id/btn_loginkar"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:src="@drawable/user_add"
+            android:src="@drawable/icbtn_login"
             app:backgroundTint="#63C6B3"/>
     </LinearLayout>
-
-
 </RelativeLayout>

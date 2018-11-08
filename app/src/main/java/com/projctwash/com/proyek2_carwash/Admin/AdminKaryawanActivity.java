@@ -68,6 +68,11 @@ public class AdminKaryawanActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int posi) {
+
+            }
+
+            @Override
+            public void onLongClick(View view, int posi) {
                 Karyawan krywn = mkary.get(posi);
                 Intent i = new Intent(getApplicationContext(),EditKaryawanActivity.class);
                 i.putExtra("id",krywn.getId());
@@ -76,11 +81,6 @@ public class AdminKaryawanActivity extends AppCompatActivity {
                 i.putExtra("alamat",krywn.getAlamat());
                 i.putExtra("password",krywn.getPassword());
                 startActivity(i);
-            }
-
-            @Override
-            public void onLongClick(View view, int posi) {
-
             }
         }));
     }

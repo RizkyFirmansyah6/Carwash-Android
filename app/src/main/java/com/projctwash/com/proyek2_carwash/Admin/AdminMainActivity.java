@@ -68,6 +68,10 @@ public class AdminMainActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int posi) {
+            }
+
+            @Override
+            public void onLongClick(View view, int posi) {
                 Kendaraan kndraan = mMotor.get(posi);
                 Intent i = new Intent(getApplicationContext(),EditJenisMotorActivity.class);
                 i.putExtra("id",kndraan.getId());
@@ -75,39 +79,6 @@ public class AdminMainActivity extends AppCompatActivity {
                 i.putExtra("harga",kndraan.getHarga());
                 i.putExtra("img",kndraan.getImg());
                 startActivity(i);
-            }
-
-            @Override
-            public void onLongClick(View view, int posi) {
-                final Kendaraan kndraan = mMotor.get(posi);
-                AlertDialog.Builder alertDlg = new AlertDialog.Builder(mcon);
-                alertDlg.setMessage("Apa anda yakin '"+kndraan.getNama()+"', akan dihapus ?");
-                alertDlg.setCancelable(false);
-                alertDlg.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Call<PostPutGetKendaraan> deletekendaraan = mApiInterface.deleteKendaraan(kndraan.getId());
-                        deletekendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
-                            @Override
-                            public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
-                                initialize();
-                            }
-
-                            @Override
-                            public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                });
-                alertDlg.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                alertDlg.create().show();
-
             }
         }));
     }

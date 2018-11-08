@@ -94,7 +94,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="30dp"
             android:clickable="true"
-            android:src="@drawable/back"
+            android:src="@drawable/icbtn_trash"
             android:scaleType="fitXY"
             app:backgroundTint="#DD5246" />
 

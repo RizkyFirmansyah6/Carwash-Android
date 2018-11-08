@@ -11,20 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.AdminMainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".JenisMotorActivity" />
+        <!-- lay admin -->
+        <activity android:name=".Admin.AdminMainActivity" />
         <activity android:name=".Admin.EditJenisMotorActivity" />
         <activity android:name=".Admin.NewJenisMotorActivity" />
         <activity android:name=".Admin.AdminKaryawanActivity" />
         <activity android:name=".Admin.NewKaryawanActivity" />
-        <activity android:name=".Admin.EditKaryawanActivity"></activity>
+        <activity android:name=".Admin.EditKaryawanActivity" />
+        <!-- lay users -->
+        <activity android:name=".User.MainUserActivity" />
+        <activity android:name=".LoginUserActivity"></activity>
     </application>
 
 </manifest>
