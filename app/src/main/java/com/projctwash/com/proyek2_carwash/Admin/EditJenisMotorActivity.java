@@ -1,6 +1,5 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,11 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.projctwash.com.proyek2_carwash.Model.PostPutGetKendaraan;
+import com.projctwash.com.proyek2_carwash.Model.PostPutDellKendaraan;
 import com.projctwash.com.proyek2_carwash.R;
 import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
 import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
@@ -68,21 +66,21 @@ public class EditJenisMotorActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<PostPutGetKendaraan> updateJnsKendaraan = mApiInterface.putKendaraan(
+                Call<PostPutDellKendaraan> updateJnsKendaraan = mApiInterface.putKendaraan(
                                     intn.getStringExtra("id"),
                                     nama.getText().toString(),
                                     harga.getText().toString(),
                                     et_link.getText().toString()
                             );
-                updateJnsKendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
+                updateJnsKendaraan.enqueue(new Callback<PostPutDellKendaraan>() {
                     @Override
-                    public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
+                    public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess",Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
+                    public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
 
                     }
@@ -99,15 +97,15 @@ public class EditJenisMotorActivity extends AppCompatActivity {
                 alertDlg.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Call<PostPutGetKendaraan> deletekendaraan = mApiInterface.deleteKendaraan(intn.getStringExtra("id"));
-                        deletekendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
+                        Call<PostPutDellKendaraan> deletekendaraan = mApiInterface.deleteKendaraan(intn.getStringExtra("id"));
+                        deletekendaraan.enqueue(new Callback<PostPutDellKendaraan>() {
                             @Override
-                            public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
+                            public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                                 finish();
                             }
 
                             @Override
-                            public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
+                            public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                             }
                         });

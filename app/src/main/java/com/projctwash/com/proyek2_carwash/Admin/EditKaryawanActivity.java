@@ -62,7 +62,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
                         nama.getText().toString(),
                         nohp.getText().toString(),
                         alamat.getText().toString(),
-                        pass.getText().toString() );
+                        pass.getText().toString(),"1" );
                 newKar.enqueue(new Callback<PostPutDellKaryawan>() {
                     @Override
                     public void onResponse(Call<PostPutDellKaryawan> call, Response<PostPutDellKaryawan> response) {

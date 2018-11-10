@@ -2,7 +2,7 @@ package com.projctwash.com.proyek2_carwash.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PostPutGetKendaraan {
+public class PostPutDellKendaraan {
     @SerializedName("status")
     String status;
     @SerializedName("result")

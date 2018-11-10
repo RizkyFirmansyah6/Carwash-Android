@@ -1,6 +1,5 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.projctwash.com.proyek2_carwash.Model.PostPutGetKendaraan;
+import com.projctwash.com.proyek2_carwash.Model.PostPutDellKendaraan;
 import com.projctwash.com.proyek2_carwash.R;
 import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
 import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
@@ -56,20 +55,20 @@ public class NewJenisMotorActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<PostPutGetKendaraan> newJnsKendaraan = mApiInterface.postKendaraan(
+                Call<PostPutDellKendaraan> newJnsKendaraan = mApiInterface.postKendaraan(
                         nama.getText().toString(),
                         harga.getText().toString(),
                         et_link.getText().toString()
                 );
-                newJnsKendaraan.enqueue(new Callback<PostPutGetKendaraan>() {
+                newJnsKendaraan.enqueue(new Callback<PostPutDellKendaraan>() {
                     @Override
-                    public void onResponse(Call<PostPutGetKendaraan> call, Response<PostPutGetKendaraan> response) {
+                    public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess",Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<PostPutGetKendaraan> call, Throwable t) {
+                    public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
 
                     }

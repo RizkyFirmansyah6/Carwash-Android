@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JenisMotorActivity">
+    tools:context=".User.UserPilihKendaraanActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcycler_jenismotor"
+        android:id="@+id/recycler_pilihjenisken"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        >
-
-    </android.support.v7.widget.RecyclerView>
-
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+</RelativeLayout>

@@ -2,13 +2,11 @@ package com.projctwash.com.proyek2_carwash.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class GetKendaraan {
+public class PostputDellTransaksi {
     @SerializedName("status")
     String status;
     @SerializedName("result")
-    List<Kendaraan> listDataKendaraan;
+    Transaksi mTransaksi;
     @SerializedName("message")
     String message;
 
@@ -19,17 +17,17 @@ public class GetKendaraan {
         this.status = status;
     }
 
+    public Transaksi getmTransaksi() {
+        return mTransaksi;
+    }
+    public void setmTransaksi(Transaksi mTransaksi) {
+        this.mTransaksi = mTransaksi;
+    }
+
     public String getMessage() {
         return message;
     }
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public List<Kendaraan> getListDataKendaraan() {
-        return listDataKendaraan;
-    }
-    public void setListDataKendaraan(List<Kendaraan> listDataKendaraan) {
-        this.listDataKendaraan = listDataKendaraan;
     }
 }

@@ -14,15 +14,19 @@ public class Karyawan {
     private String alamat;
     @SerializedName("password")
     private  String password;
+    @SerializedName("level")
+    private  String level;
 
     public Karyawan() {
     }
-    public Karyawan(String id, String nama, String nohp, String alamat, String password) {
+
+    public Karyawan(String id, String nama, String nohp, String alamat, String password, String level) {
         this.id = id;
         this.nama = nama;
         this.nohp = nohp;
         this.alamat = alamat;
         this.password = password;
+        this.level = level;
     }
 
     public String getId() {
@@ -58,5 +62,12 @@ public class Karyawan {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

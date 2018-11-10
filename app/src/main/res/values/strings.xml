@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Car Wash</string>
+
+    <string-array name="spiner_user">
+        <item>Hari ini</item>
+        <item>minggu ini</item>
+        <item>Bulan ini</item>
+    </string-array>
 </resources>

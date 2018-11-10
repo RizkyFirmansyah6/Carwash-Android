@@ -1,10 +1,8 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,15 +13,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.projctwash.com.proyek2_carwash.Adapter.RecyclerAdapterJenisMotor;
+import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
 import com.projctwash.com.proyek2_carwash.Listener.ClickListener;
 import com.projctwash.com.proyek2_carwash.Listener.RecyclerTouchListener;
+import com.projctwash.com.proyek2_carwash.LoginActivity;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.Kendaraan;
-import com.projctwash.com.proyek2_carwash.Model.PostPutGetKendaraan;
 import com.projctwash.com.proyek2_carwash.R;
 import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
 import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
+import com.projctwash.com.proyek2_carwash.User.MainUserActivity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,14 +33,18 @@ import retrofit2.Response;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    ApiInterface mApiInterface;
+    private ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerAdapterJenisMotor mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ImageView btn_karyawan,btn_kendaraan;
-    List<Kendaraan> mMotor;
-    FloatingActionButton btn_add;
-    Context mcon;
+    private ImageView btn_karyawan,btn_kendaraan,btn_asetting;
+    private List<Kendaraan> mMotor;
+    private FloatingActionButton btn_add;
+    private Context mcon;
+
+    //    sesion management
+    HashMap<String,String> user;
+    SessionManagement mSesion;
 
 
     @Override
@@ -53,6 +58,9 @@ public class AdminMainActivity extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        mSesion = new SessionManagement(getApplicationContext());
+        user = mSesion.getLevelInformation();
 
         initNavigation();
         initialize();
@@ -68,6 +76,8 @@ public class AdminMainActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int posi) {
+                Kendaraan kndraan = mMotor.get(posi);
+                Toast.makeText(getApplicationContext(),"harga : "+kndraan.getHarga(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -87,6 +97,13 @@ public class AdminMainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initialize();
+
+        if (!mSesion.isLoggedIn()){
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            Toast.makeText(getApplicationContext(),"logout berhasil",Toast.LENGTH_SHORT).show();
+            startActivity(i);
+            finish();
+        }
     }
 
     public void initialize(){
@@ -113,6 +130,7 @@ public class AdminMainActivity extends AppCompatActivity {
     public void initNavigation(){
         btn_kendaraan = findViewById(R.id.btn_kendaraan);
         btn_karyawan = findViewById(R.id.btn_karyawan);
+        btn_asetting = findViewById(R.id.btn_settingadmin);
 
         btn_kendaraan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +146,13 @@ public class AdminMainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),AdminKaryawanActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+        btn_asetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminSettingActivity.class);
+                startActivity(i);
             }
         });
 
