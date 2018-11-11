@@ -128,17 +128,26 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     public void initNavigation(){
-        ImageView btn_karyawan,btn_kendaraan,btn_transaksi,btn_asetting;
+        ImageView btn_karyawan,btn_kendaraan,btn_transaksi,btn_asetting,btn_aKondisi;
 
         btn_kendaraan = findViewById(R.id.btn_kendaraan);
+        btn_aKondisi = findViewById(R.id.btn_akondisi);
+        btn_transaksi =  findViewById(R.id.btn_aTransaksi);
         btn_karyawan = findViewById(R.id.btn_karyawan);
         btn_asetting = findViewById(R.id.btn_settingadmin);
-        btn_transaksi =  findViewById(R.id.btn_aTransaksi);
 
         btn_kendaraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_aKondisi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminKondisiActivity.class);
                 startActivity(i);
                 finish();
             }

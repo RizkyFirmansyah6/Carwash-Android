@@ -88,6 +88,7 @@ public class EditJenisMotorActivity extends AppCompatActivity {
             }
         });
 
+        btn_delete.setImageResource(R.drawable.icbtn_trash);
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
