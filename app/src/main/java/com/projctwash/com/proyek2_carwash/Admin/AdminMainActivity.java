@@ -37,7 +37,6 @@ public class AdminMainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerAdapterJenisMotor mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ImageView btn_karyawan,btn_kendaraan,btn_asetting;
     private List<Kendaraan> mMotor;
     private FloatingActionButton btn_add;
     private Context mcon;
@@ -93,18 +92,6 @@ public class AdminMainActivity extends AppCompatActivity {
         }));
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initialize();
-
-        if (!mSesion.isLoggedIn()){
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-            Toast.makeText(getApplicationContext(),"logout berhasil",Toast.LENGTH_SHORT).show();
-            startActivity(i);
-            finish();
-        }
-    }
 
     public void initialize(){
         Call<GetKendaraan> gKen = mApiInterface.getKendaraan();
@@ -127,15 +114,39 @@ public class AdminMainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initialize();
+
+        if (!mSesion.isLoggedIn()){
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            Toast.makeText(getApplicationContext(),"logout berhasil",Toast.LENGTH_SHORT).show();
+            startActivity(i);
+            finish();
+        }
+    }
+
     public void initNavigation(){
+        ImageView btn_karyawan,btn_kendaraan,btn_transaksi,btn_asetting;
+
         btn_kendaraan = findViewById(R.id.btn_kendaraan);
         btn_karyawan = findViewById(R.id.btn_karyawan);
         btn_asetting = findViewById(R.id.btn_settingadmin);
+        btn_transaksi =  findViewById(R.id.btn_aTransaksi);
 
         btn_kendaraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_transaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminTransaksiActivity.class);
                 startActivity(i);
                 finish();
             }

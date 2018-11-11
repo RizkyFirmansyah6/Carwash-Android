@@ -49,12 +49,14 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_back"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_weight="1"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/back"
+            app:backgroundTint="@android:color/holo_red_dark" />
         <View
             android:layout_weight="1"
             android:layout_width="60dp"

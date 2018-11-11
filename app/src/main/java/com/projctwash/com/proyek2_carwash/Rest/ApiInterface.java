@@ -97,7 +97,8 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("UserTransaksi")
-    Call<GetTransaksi> getTransaksiBy  (@Field("kasir") String kasir);
+    Call<GetTransaksi> getTransaksiBy  (@Field("kasir") String kasir,
+                                        @Field("where") String where);
 
     @FormUrlEncoded
     @POST("Transaksi")

@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.projctwash.com.proyek2_carwash.Adapter.RecyclerAdapterJenisMotor;
 import com.projctwash.com.proyek2_carwash.Adapter.RecyclerAdapterKaryawan;
+import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
 import com.projctwash.com.proyek2_carwash.Listener.ClickListener;
 import com.projctwash.com.proyek2_carwash.Listener.RecyclerTouchListener;
+import com.projctwash.com.proyek2_carwash.LoginActivity;
 import com.projctwash.com.proyek2_carwash.Model.GetKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.Karyawan;
@@ -41,15 +43,15 @@ public class AdminKaryawanActivity extends AppCompatActivity {
     private ApiInterface mApiInterface;
 //    list karywan
     List<Karyawan> mkary;
+    SessionManagement mSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_karyawan);
-        initNavigation();
-
 
         btn_add = findViewById(R.id.btn_addkaryawan);
+        mSesion = new SessionManagement(getApplicationContext());
 
         mRecyclerView = findViewById(R.id.rcycler_karyawan);
         mLayoutManager = new LinearLayoutManager(this,LinearLayout.VERTICAL,false);
@@ -57,6 +59,7 @@ public class AdminKaryawanActivity extends AppCompatActivity {
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         initialize();
+        initNavigation();
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,11 +88,6 @@ public class AdminKaryawanActivity extends AppCompatActivity {
         }));
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initialize();
-    }
 
     public void initialize(){
         Call<GetKaryawan> getKar = mApiInterface.getKaryawan();
@@ -110,14 +108,40 @@ public class AdminKaryawanActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initialize();
+
+        if (!mSesion.isLoggedIn()){
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            Toast.makeText(getApplicationContext(),"logout berhasil",Toast.LENGTH_SHORT).show();
+            startActivity(i);
+            finish();
+        }
+    }
+
+
     public void initNavigation(){
+        ImageView btn_karyawan,btn_kendaraan,btn_transaksi,btn_asetting;
+
         btn_kendaraan = findViewById(R.id.btn_kendaraan);
         btn_karyawan = findViewById(R.id.btn_karyawan);
+        btn_asetting = findViewById(R.id.btn_settingadmin);
+        btn_transaksi =  findViewById(R.id.btn_aTransaksi);
 
         btn_kendaraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_transaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminTransaksiActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -128,6 +152,13 @@ public class AdminKaryawanActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),AdminKaryawanActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+        btn_asetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminSettingActivity.class);
+                startActivity(i);
             }
         });
 

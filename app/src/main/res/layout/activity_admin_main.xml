@@ -73,9 +73,9 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
-                android:src="@drawable/motor"/>
+                android:src="@drawable/ic_kondisi"/>
             <ImageView
-                android:id="@+id/btn_transaksi"
+                android:id="@+id/btn_aTransaksi"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_weight="1"

@@ -1,4 +1,4 @@
-package com.projctwash.com.proyek2_carwash.User;
+package com.projctwash.com.proyek2_carwash.Admin;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -26,7 +26,6 @@ import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
 import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -35,39 +34,34 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainUserActivity extends AppCompatActivity {
-//  recycler component
+public class AdminTransaksiActivity extends AppCompatActivity {
+    //  recycler component
     private ApiInterface mApiInterface;
     private RecyclerView mRecyclerView;
     private RecyclerAdapterTransaksi mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Transaksi> mTransaksi;
-//    sesion management
+    //    sesion management
     HashMap<String,String> user;
     SessionManagement mSesion;
 
-//    Button
-    ImageView btn_profile,btn_trans;
-    FloatingActionButton btn_addtrans;
     TextView tv_tot;
-//    list spin
+    //    list spin
     Spinner mySpiner ;
     ArrayAdapter<CharSequence> myAdpterspin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_user);
+        setContentView(R.layout.activity_admin_transaksi);
 
+//      findtext
         tv_tot = findViewById(R.id.tv_total_transaksi);
-        btn_addtrans = findViewById(R.id.btn_addtransaksi);
-        btn_profile = findViewById(R.id.btn_profilsetting);
-        btn_trans = findViewById(R.id.btn_transaksi);
-        //        get sesion
+//      get sesion
         mSesion = new SessionManagement(this);
         user = mSesion.getUserInformation();
 //      spinner
-        mySpiner = findViewById(R.id.spinner);
+        mySpiner = findViewById(R.id.spinner_admtransaksi);
         myAdpterspin = ArrayAdapter.createFromResource(this,R.array.sortby,R.layout.support_simple_spinner_dropdown_item);
         myAdpterspin.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mySpiner.setAdapter(myAdpterspin);
@@ -84,38 +78,14 @@ public class MainUserActivity extends AppCompatActivity {
 
             }
         });
-
 //        find recycler
-        mRecyclerView = findViewById(R.id.recycler_transaksi);
+        mRecyclerView = findViewById(R.id.rcycler_admTransaksi);
         mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayout.VERTICAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-
         initialize(mySpiner.getSelectedItem().toString());
+        initNavigation();
 
-        btn_addtrans.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),UserPilihKendaraanActivity.class)  ;
-                startActivity(i);
-            }
-        });
-
-        btn_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),UserSettingActivity.class)  ;
-                startActivity(i);
-
-            }
-        });
-        btn_trans.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initialize(mySpiner.getSelectedItem().toString());
-                Toast.makeText(getApplicationContext(),"refresh data",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     public void initialize(String sortby){
@@ -128,7 +98,7 @@ public class MainUserActivity extends AppCompatActivity {
             qery="month";
         }
 
-        Call<GetTransaksi> getKOndisi = mApiInterface.getTransaksiBy(user.get(SessionManagement.KEY_ID),qery);
+        Call<GetTransaksi> getKOndisi = mApiInterface.getTransaksiBy("",qery);
         getKOndisi.enqueue(new Callback<GetTransaksi>() {
             @Override
             public void onResponse(Call<GetTransaksi> call, Response<GetTransaksi> response) {
@@ -162,6 +132,48 @@ public class MainUserActivity extends AppCompatActivity {
             finish();
         }
         initialize(mySpiner.getSelectedItem().toString());
+
+    }
+
+    public void initNavigation(){
+        ImageView btn_karyawan,btn_kendaraan,btn_transaksi,btn_asetting;
+
+        btn_kendaraan = findViewById(R.id.btn_kendaraan);
+        btn_karyawan = findViewById(R.id.btn_karyawan);
+        btn_asetting = findViewById(R.id.btn_settingadmin);
+        btn_transaksi =  findViewById(R.id.btn_aTransaksi);
+
+        btn_kendaraan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_transaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminTransaksiActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_karyawan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminKaryawanActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btn_asetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminSettingActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }

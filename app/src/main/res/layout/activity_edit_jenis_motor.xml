@@ -88,14 +88,14 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_back_ed"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="30dp"
             android:clickable="true"
-            android:src="@drawable/icbtn_trash"
+            android:foreground="?android:attr/selectableItemBackground"
             android:scaleType="fitXY"
+            android:src="@drawable/back"
             app:backgroundTint="#DD5246" />
 
         <android.support.design.widget.FloatingActionButton

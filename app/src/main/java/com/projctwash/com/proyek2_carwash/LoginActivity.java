@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    FloatingActionButton btn_login;
+    FloatingActionButton btn_login,btn_exit;
     EditText nohp,pas;
     ApiInterface mApiInterface;
     //    sesion management
@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_user);
 
         btn_login = findViewById(R.id.btn_loginkar);
+        btn_exit = findViewById(R.id.btn_back);
         nohp = findViewById(R.id.et_nohplogin);
         pas = findViewById(R.id.et_passlogin);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -87,6 +88,12 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

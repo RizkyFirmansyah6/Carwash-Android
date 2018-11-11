@@ -18,13 +18,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nomor Polisi"/>
+
         <EditText
             android:id="@+id/et_kplatnomor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="14"
             android:hint="plat nomor"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:textAllCaps="true" />
 
         <RelativeLayout
             android:layout_width="match_parent"

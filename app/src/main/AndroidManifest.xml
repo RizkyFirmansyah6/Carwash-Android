@@ -31,7 +31,9 @@
         <activity android:name=".User.UserKondisiActivity" />
         <activity android:name=".User.UserKonfirmasiActivity" />
         <activity android:name=".User.UserSettingActivity" />
-        <activity android:name=".Admin.AdminSettingActivity"></activity>
+        <activity android:name=".Admin.AdminSettingActivity" />
+        <activity android:name=".Admin.AdminTransaksiActivity" />
+        <activity android:name=".Admin.AdminKondisiActivity"></activity>
     </application>
 
 </manifest>
