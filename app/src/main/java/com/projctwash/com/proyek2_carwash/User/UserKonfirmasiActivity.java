@@ -71,6 +71,8 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
 //            }
 //        });
 //
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Event_Check_Fragment()).commit();
+
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
