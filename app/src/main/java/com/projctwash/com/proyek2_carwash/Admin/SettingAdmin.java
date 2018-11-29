@@ -1,8 +1,11 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
@@ -10,29 +13,36 @@ import com.projctwash.com.proyek2_carwash.R;
 
 import java.util.HashMap;
 
-public class AdminSettingActivity extends AppCompatActivity {
 
+public class SettingAdmin extends Fragment {
+    View v;
     Button btn_exit;
-//    sesion management
+    //    sesion management
     HashMap<String,String> user;
     SessionManagement mSesion;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_setting);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        v= inflater.inflate(R.layout.fragment_setting_admin, container, false);
 
-        btn_exit =findViewById(R.id.btn_logout);
+        init();
+        return v;
+    }
+
+    private void init(){
+
+        btn_exit =v.findViewById(R.id.btn_logout);
         //        get sesion
-        mSesion = new SessionManagement(this);
+        mSesion = new SessionManagement(getContext());
         user = mSesion.getUserInformation();
 
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mSesion.logoutUser();
-                finish();
+                getActivity().finish();
             }
         });
+
     }
 }

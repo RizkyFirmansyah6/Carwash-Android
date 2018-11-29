@@ -1,4 +1,4 @@
-package com.projctwash.com.proyek2_carwash.Admin;
+package com.projctwash.com.proyek2_carwash.Admin.cud;
 
 import android.content.Context;
 import android.content.DialogInterface;

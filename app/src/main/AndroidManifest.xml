@@ -20,20 +20,16 @@
         </activity>
         <!-- lay admin -->
         <activity android:name=".Admin.AdminMainActivity" />
-        <activity android:name=".Admin.EditJenisMotorActivity" />
-        <activity android:name=".Admin.NewJenisMotorActivity" />
-        <activity android:name=".Admin.AdminKaryawanActivity" />
-        <activity android:name=".Admin.NewKaryawanActivity" />
-        <activity android:name=".Admin.EditKaryawanActivity" />
+        <activity android:name=".Admin.cud.EditJenisMotorActivity" />
+        <activity android:name=".Admin.cud.NewJenisMotorActivity" />
+        <activity android:name=".Admin.cud.NewKaryawanActivity" />
+        <activity android:name=".Admin.cud.EditKaryawanActivity" />
         <!-- lay users -->
         <activity android:name=".User.MainUserActivity" />
         <activity android:name=".User.UserPilihKendaraanActivity" />
         <activity android:name=".User.UserKondisiActivity" />
         <activity android:name=".User.UserKonfirmasiActivity" />
         <activity android:name=".User.UserSettingActivity" />
-        <activity android:name=".Admin.AdminSettingActivity" />
-        <activity android:name=".Admin.AdminTransaksiActivity" />
-        <activity android:name=".Admin.AdminKondisiActivity"></activity>
     </application>
 
 </manifest>

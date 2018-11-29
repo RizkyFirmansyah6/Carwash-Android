@@ -51,9 +51,6 @@ public class SessionManagement {
         user.put(KEY_ID, mSharedPreference.getString(KEY_ID, null));
         // user nama
         user.put(KEY_NAMA, mSharedPreference.getString(KEY_NAMA, null));
-//        // user level
-//        user.put(KEY_LEVEL, mSharedPreference.getString(KEY_LEVEL, null));
-        // return user
         return user;
     }
 
@@ -69,7 +66,7 @@ public class SessionManagement {
     }
 
     public boolean isLoggedIn(){
-        return mSharedPreference.getBoolean(IS_LOGIN, true);
+        return mSharedPreference.getBoolean(IS_LOGIN,false);
     }
 
     public void logoutUser(){

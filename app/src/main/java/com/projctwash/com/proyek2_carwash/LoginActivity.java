@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText nohp,pas;
     ApiInterface mApiInterface;
     //    sesion management
-    HashMap<String,String> user;
     SessionManagement mSesion;
 
     @Override
@@ -42,9 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         pas = findViewById(R.id.et_passlogin);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         mSesion = new SessionManagement(getApplicationContext());
-        user = mSesion.getLevelInformation();
 
         if (mSesion.isLoggedIn()){
+            HashMap<String,String> user = mSesion.getLevelInformation();
+
             if (user.get(SessionManagement.KEY_LEVEL).equals("0")){
                 Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
                 startActivity(i);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_kategori_admin"
+        android:icon="@drawable/motor"
+        android:title="kategori"/>
+    <item
+        android:id="@+id/nav_kondisi_admin"
+        android:icon="@drawable/ic_kondisi"
+        android:title="kondisi"/>
+    <item
+        android:id="@+id/nav_transaksi_admin"
+        android:icon="@drawable/transaksi"
+        android:title="transaksi"/>
+    <item
+        android:id="@+id/nav_karyawan_admin"
+        android:icon="@drawable/users"
+        android:title="karyawan"/>
+    <item
+        android:id="@+id/nav_setting_admin"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting"/>
+</menu>

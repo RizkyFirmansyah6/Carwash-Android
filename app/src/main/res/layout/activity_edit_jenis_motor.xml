@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal|center_vertical"
-    tools:context=".Admin.EditJenisMotorActivity">
+    tools:context=".Admin.cud.EditJenisMotorActivity">
 
     <ImageView
         android:id="@+id/img_editjenismotor"

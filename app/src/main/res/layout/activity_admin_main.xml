@@ -1,109 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Admin.AdminMainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
+        android:id="@+id/frament_container_admin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginHorizontal="3dp">
+        android:layout_above="@id/bottom_navigation"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcycler_jenismotor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_addmotor"
-            android:clickable="true"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/add"
-            android:scaleType="centerCrop"
-            />
-
-    </android.support.design.widget.CoordinatorLayout>
-
-
-    <View
-        android:background="@color/colorPrimary"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_above="@+id/bottt"/>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/bottt"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardElevation="20dp"
-        app:cardMaxElevation="30dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <ImageView
-                android:id="@+id/btn_kendaraan"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/motor"/>
-            <ImageView
-                android:id="@+id/btn_akondisi"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/ic_kondisi"/>
-            <ImageView
-                android:id="@+id/btn_aTransaksi"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/transaksi"/>
-            <ImageView
-                android:id="@+id/btn_karyawan"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/users"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/btn_settingadmin"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/ic_setting"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
+        android:fitsSystemWindows="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navmenu_admin" />
 </RelativeLayout>

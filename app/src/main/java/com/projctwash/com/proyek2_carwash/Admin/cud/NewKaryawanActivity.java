@@ -1,4 +1,4 @@
-package com.projctwash.com.proyek2_carwash.Admin;
+package com.projctwash.com.proyek2_carwash.Admin.cud;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
