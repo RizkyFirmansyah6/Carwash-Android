@@ -107,7 +107,29 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layevnt"
         android:layout_below="@+id/lay_fomkar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Sekarang"
+            android:textColor="#000"/>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/layevnt"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
@@ -115,21 +137,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:weightSum="3">
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/btn_backk"-->
-            <!--android:clickable="true"-->
-            <!--android:foreground="?android:attr/selectableItemBackground"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:src="@drawable/back"-->
-            <!--android:backgroundTint="#F15A24"/>-->
-        <View
-            android:layout_weight="1"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_savekonfirmasi"
