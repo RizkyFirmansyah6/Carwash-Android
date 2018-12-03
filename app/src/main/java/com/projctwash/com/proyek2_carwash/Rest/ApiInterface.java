@@ -1,6 +1,8 @@
 package com.projctwash.com.proyek2_carwash.Rest;
 
 
+import com.projctwash.com.proyek2_carwash.Model.EventCheckUser;
+import com.projctwash.com.proyek2_carwash.Model.GetEvent;
 import com.projctwash.com.proyek2_carwash.Model.GetKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.GetKondisi;
@@ -123,5 +125,16 @@ public interface ApiInterface {
     @HTTP(method = "DELETE", path = "Transaksi", hasBody = true)
     Call<PostputDellTransaksi> deleteTransaksi(@Field("id") String id);
 //  Transaksi END
+
+
+//    EventUSer
+    @GET("Event/eventuser")
+    Call<GetEvent> getEventUser();
+
+    //    EventUSerCheckstatus
+    @FormUrlEncoded
+    @POST("Event/checkevent")
+    Call<EventCheckUser> getEventUserCheck(@Field("nopol") String nopol,
+                                           @Field("bln") String bln);
 
 }

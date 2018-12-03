@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
+import com.projctwash.com.proyek2_carwash.Listener.ClickListener;
+import com.projctwash.com.proyek2_carwash.Listener.RecyclerTouchListener;
 import com.projctwash.com.proyek2_carwash.Model.PostputDellTransaksi;
 import com.projctwash.com.proyek2_carwash.R;
 import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
@@ -28,11 +30,13 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
     Intent intt;
     HashMap<String,String> user;
     SessionManagement mSesion;
-
-    private EditText platnmr;
-    private TextView kendaraan,hargakendaraan,kondisi,hargakondisi,total;
-    private FloatingActionButton btn_back,btn_save;
     ApiInterface mApiInterface;
+
+    public EditText platnmr;
+    public TextView kendaraan,hargakendaraan,kondisi,hargakondisi,total,totalbayar,disc_1,disc_2,nm_evnt;
+    private FloatingActionButton btn_back,btn_save;
+    Integer tot,tot_semua,disc=0;
+    NumberFormat formatRupiah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,36 +47,50 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
 //        get sesion
         mSesion = new SessionManagement(this);
         user = mSesion.getUserInformation();
+//      init rupiah
+        Locale localeID = new Locale("in", "ID");
+        formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
+        initdata_lay();
+        hitung();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frament_eventcontainer_user,new User_Event()).commit();
+
+        init_listener();
+
+    }
+
+    private void hitung(){
+        kendaraan.setText(intt.getStringExtra("kendaraan"));
+        hargakendaraan.setText(intt.getStringExtra("hargakendaraan"));
+        kondisi.setText(intt.getStringExtra("kondisi"));
+        hargakondisi.setText(intt.getStringExtra("hargakondisi"));
+
+        disc_1.setText("-("+disc+")");
+        disc_2.setText("Disc    -("+formatRupiah.format(disc)+")");
+
+        tot = Integer.parseInt(intt.getStringExtra("hargakendaraan"))+Integer.parseInt(intt.getStringExtra("hargakondisi"));
+        total.setText("Total     "+formatRupiah.format(tot));
+        tot_semua = tot-disc;
+        totalbayar.setText("Total Bayar    "+formatRupiah.format(tot_semua));
+    }
+
+    private  void  initdata_lay(){
         platnmr = findViewById(R.id.et_kplatnomor);
         kendaraan = findViewById(R.id.tv_kkendaraan);
         hargakendaraan = findViewById(R.id.tv_khargakendaraan);
         kondisi = findViewById(R.id.tv_kkondisi);
         hargakondisi = findViewById(R.id.tv_khargakondisi);
         total = findViewById(R.id.tv_ktotal);
-//        btn_back = findViewById(R.id.btn_backk);
+        totalbayar = findViewById(R.id.totBayar);
+        disc_1 = findViewById(R.id.tv_disc1);
+        disc_2 = findViewById(R.id.tv_disc2);
+        nm_evnt = findViewById(R.id.tv_nmkonfevent_user);
         btn_save = findViewById(R.id.btn_savekonfirmasi);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+    }
 
-        final Integer tot = Integer.parseInt(intt.getStringExtra("hargakendaraan"))+Integer.parseInt(intt.getStringExtra("hargakondisi"));
-        kendaraan.setText(intt.getStringExtra("kendaraan"));
-        hargakendaraan.setText(intt.getStringExtra("hargakendaraan"));
-        kondisi.setText(intt.getStringExtra("kondisi"));
-        hargakondisi.setText(intt.getStringExtra("hargakondisi"));
-
-        Locale localeID = new Locale("in", "ID");
-        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-        total.setText("Total     "+formatRupiah.format(tot));
-
-//        btn_back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
-//
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Event_Check_Fragment()).commit();
-
+    private void init_listener(){
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +101,7 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
                         intt.getStringExtra("kondisi"),
                         intt.getStringExtra("hargakondisi"),
                         tot.toString(),user.get(SessionManagement.KEY_ID)
-                         );
+                );
                 newKar.enqueue(new Callback<PostputDellTransaksi>() {
                     @Override
                     public void onResponse(Call<PostputDellTransaksi> call, Response<PostputDellTransaksi> response) {
