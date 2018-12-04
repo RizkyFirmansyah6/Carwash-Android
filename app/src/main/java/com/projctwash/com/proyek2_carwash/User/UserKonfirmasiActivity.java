@@ -60,18 +60,19 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
 
     }
 
-    private void hitung(){
+    public void hitung(){
         kendaraan.setText(intt.getStringExtra("kendaraan"));
         hargakendaraan.setText(intt.getStringExtra("hargakendaraan"));
         kondisi.setText(intt.getStringExtra("kondisi"));
         hargakondisi.setText(intt.getStringExtra("hargakondisi"));
 
-        disc_1.setText("-("+disc+")");
-        disc_2.setText("Disc    -("+formatRupiah.format(disc)+")");
+        disc_1.setText("-("+disc+"%)");
 
         tot = Integer.parseInt(intt.getStringExtra("hargakendaraan"))+Integer.parseInt(intt.getStringExtra("hargakondisi"));
         total.setText("Total     "+formatRupiah.format(tot));
-        tot_semua = tot-disc;
+        tot_semua = tot-(disc*tot/100);
+        disc_2.setText("Disc    - ("+formatRupiah.format((disc*tot/100))+")");
+
         totalbayar.setText("Total Bayar    "+formatRupiah.format(tot_semua));
     }
 

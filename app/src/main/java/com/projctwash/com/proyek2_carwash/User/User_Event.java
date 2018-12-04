@@ -2,6 +2,7 @@ package com.projctwash.com.proyek2_carwash.User;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -71,6 +72,7 @@ public class User_Event extends Fragment {
             public void onClick(View view, int posi) {
                 final UserKonfirmasiActivity actvty = (UserKonfirmasiActivity) getActivity();
                 if (!actvty.platnmr.getText().toString().trim().equals("")){
+                    /// event class
                     final Event  ev = mEvent.get(posi);
 
                     Call<EventCheckUser> checkStatus = mApiInterface.getEventUserCheck(actvty.platnmr.getText().toString(),ev.getBulan());
@@ -97,9 +99,18 @@ public class User_Event extends Fragment {
                                 public void onClick(View v) {
                                     if (statusMtr>=Integer.parseInt(ev.getRequired())){
                                         actvty.nm_evnt.setText(ev.getNama_event());
+                                        actvty.disc = Integer.parseInt(ev.getDiskon());
+                                        actvty.hitung();
 
+                                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+                                        alertDlg.setMessage("Sukses Menukarkan :)");
+                                        alertDlg.show();
+                                        dialog_detail.hide();
                                     }else {
-                                        Toast.makeText(getContext(),"kurang ",Toast.LENGTH_LONG).show();
+                                        Integer kurang = Integer.parseInt(ev.getRequired()) - statusMtr;
+                                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+                                        alertDlg.setMessage("Tingkatkan Terus, cuci anda kurang "+kurang+"X Lagi untuk mendapatkan promo ini");
+                                        alertDlg.show();
                                     }
                                 }
                             });
