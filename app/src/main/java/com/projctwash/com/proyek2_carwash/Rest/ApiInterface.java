@@ -130,6 +130,8 @@ public interface ApiInterface {
 //    EventUSer
     @GET("Event/eventuser")
     Call<GetEvent> getEventUser();
+    @GET("Event")
+    Call<GetEvent> getEventAdmin();
 
     //    EventUSerCheckstatus
     @FormUrlEncoded

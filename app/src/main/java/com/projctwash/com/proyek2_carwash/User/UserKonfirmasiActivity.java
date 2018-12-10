@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.User;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -95,24 +96,33 @@ public class UserKonfirmasiActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final ProgressDialog process = new ProgressDialog(UserKonfirmasiActivity.this);
+                process.setTitle("Processing");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostputDellTransaksi> newKar = mApiInterface.postTransaksi(
                         platnmr.getText().toString(),
                         intt.getStringExtra("kendaraan"),
                         intt.getStringExtra("hargakendaraan"),
                         intt.getStringExtra("kondisi"),
                         intt.getStringExtra("hargakondisi"),
-                        tot.toString(),user.get(SessionManagement.KEY_ID)
+                        tot_semua.toString(),user.get(SessionManagement.KEY_ID)
                 );
                 newKar.enqueue(new Callback<PostputDellTransaksi>() {
                     @Override
                     public void onResponse(Call<PostputDellTransaksi> call, Response<PostputDellTransaksi> response) {
                         Toast.makeText(getApplicationContext(),"Suksess Ditambah",Toast.LENGTH_SHORT).show();
                         finish();
+                        process.hide();
                     }
 
                     @Override
                     public void onFailure(Call<PostputDellTransaksi> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
+                        process.hide();
                     }
                 });
 
