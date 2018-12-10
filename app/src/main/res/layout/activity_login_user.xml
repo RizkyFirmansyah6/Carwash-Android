@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,70 +7,84 @@
     tools:context=".LoginActivity">
 
     <LinearLayout
-        android:id="@+id/lay_fomkar"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_poster"/>
+        <LinearLayout
+            android:id="@+id/lay_fomkar"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Hp"/>
-        <EditText
-            android:id="@+id/et_nohplogin"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/et_nohplogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="11"
+                    android:focusable="true"
+                    android:hint="No Hp"
+                    android:inputType="phone"
+                    android:maxLength="14"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/et_passlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:ems="11"
+                    android:hint="Password"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/lay_fomkar"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="11"
-            android:inputType="phone"
-            android:maxLength="14"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"/>
-        <EditText
-            android:id="@+id/et_passlogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="11"
-            android:inputType="textPassword"/>
+            android:weightSum="3">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_back"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/back"
+                app:backgroundTint="@android:color/holo_red_dark" />
+            <View
+                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_loginkar"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/icbtn_login"
+                app:backgroundTint="#63C6B3"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/lay_fomkar"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:weightSum="3">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:src="@drawable/back"
-            app:backgroundTint="@android:color/holo_red_dark" />
-        <View
-            android:layout_weight="1"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_loginkar"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/icbtn_login"
-            app:backgroundTint="#63C6B3"/>
-    </LinearLayout>
-</RelativeLayout>
+</ScrollView>

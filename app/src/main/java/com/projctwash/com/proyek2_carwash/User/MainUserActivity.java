@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.User;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import com.projctwash.com.proyek2_carwash.Adapter.RecyclerAdapterTransaksi;
 import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
+import com.projctwash.com.proyek2_carwash.Listener.ClickListener;
+import com.projctwash.com.proyek2_carwash.Listener.RecyclerTouchListener;
 import com.projctwash.com.proyek2_carwash.LoginActivity;
 import com.projctwash.com.proyek2_carwash.Model.GetTransaksi;
 import com.projctwash.com.proyek2_carwash.Model.Transaksi;
@@ -93,6 +97,38 @@ public class MainUserActivity extends AppCompatActivity {
 
         initialize(mySpiner.getSelectedItem().toString());
 
+        // mRecyclerView touchlistener
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int posi) {
+                Transaksi transaksi = mTransaksi.get(posi);
+//                // conf menampilkan dialog
+                Dialog dialog_detail = new Dialog(MainUserActivity.this);
+                dialog_detail.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog_detail.setContentView(R.layout.detail_transaksi_user);
+//                dialog_detail.setCanceledOnTouchOutside(false);
+                TextView id = dialog_detail.findViewById(R.id.tv_idtransaksidetail_user);
+                TextView kendaraan = dialog_detail.findViewById(R.id.tv_kendaraandetail_user);
+                TextView harga = dialog_detail.findViewById(R.id.tv_hargadetail_user);
+                TextView tanggal = dialog_detail.findViewById(R.id.tv_tanggaltransaksidetail_user);
+
+                id.setText(transaksi.getId());
+                kendaraan.setText(transaksi.getKendaraan()+"  ("+transaksi.getNopol()+")");
+//                rupiah
+                Locale localeID = new Locale("in", "ID");
+                NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+                harga.setText(formatRupiah.format(Integer.parseInt(transaksi.getTotal())));
+                tanggal.setText(transaksi.getTanggal());
+
+                dialog_detail.show();
+            }
+            @Override
+            public void onLongClick(View view, int posi) {
+
+            }
+        }));
+
+        /// btn listener
         btn_addtrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
