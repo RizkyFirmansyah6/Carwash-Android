@@ -24,6 +24,8 @@
         <activity android:name=".Admin.cud.NewJenisMotorActivity" />
         <activity android:name=".Admin.cud.NewKaryawanActivity" />
         <activity android:name=".Admin.cud.EditKaryawanActivity" />
+        <activity android:name=".Admin.Event_manager" />
+        <activity android:name=".Admin.cud.new_event" />
         <!-- lay users -->
         <activity android:name=".User.MainUserActivity" />
         <activity android:name=".User.UserPilihKendaraanActivity" />

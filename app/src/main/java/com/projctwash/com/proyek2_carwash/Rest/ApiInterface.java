@@ -7,6 +7,7 @@ import com.projctwash.com.proyek2_carwash.Model.GetKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.GetKondisi;
 import com.projctwash.com.proyek2_carwash.Model.GetTransaksi;
+import com.projctwash.com.proyek2_carwash.Model.PostPutDellEvent;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKondisi;
@@ -138,5 +139,18 @@ public interface ApiInterface {
     @POST("Event/checkevent")
     Call<EventCheckUser> getEventUserCheck(@Field("nopol") String nopol,
                                            @Field("bln") String bln);
-
+    @FormUrlEncoded
+    @POST("Event/newEvent")
+    Call<PostPutDellEvent> newEvent(@Field("nama_event") String nama_event,
+                                    @Field("img") String img,
+                                    @Field("detail") String detail,
+                                    @Field("diskon") String diskon,
+                                    @Field("required") String required,
+                                    @Field("bulan") String bulan,
+                                    @Field("status") String status);
+//  put status
+    @FormUrlEncoded
+    @PUT("Event/gantiStatusEvent")
+    Call<PostPutDellEvent> putStatusEvent(@Field("id") String id,
+                                        @Field("status") String status);
 }

@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp">
         <EditText
+            android:id="@+id/et_linkk"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Link"
             android:ems="13"/>
         <Button
+            android:id="@+id/btn_ok"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.Admin.cud;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,6 +58,12 @@ public class EditKaryawanActivity extends AppCompatActivity {
         btn_Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog process = new ProgressDialog(EditKaryawanActivity.this);
+                process.setTitle("Processing");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostPutDellKaryawan> newKar = mApiInterface.putKaryawan(
                         intn.getStringExtra("id"),
                         nama.getText().toString(),
@@ -68,11 +75,13 @@ public class EditKaryawanActivity extends AppCompatActivity {
                     public void onResponse(Call<PostPutDellKaryawan> call, Response<PostPutDellKaryawan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess DiUpdate",Toast.LENGTH_SHORT).show();
                         finish();
+                        process.hide();
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDellKaryawan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
+                        process.hide();
                     }
                 });
 

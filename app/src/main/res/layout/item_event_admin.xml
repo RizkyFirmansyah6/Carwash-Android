@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,8 +18,7 @@
             android:id="@+id/poster_ivent_user"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/poster"/>
+            android:layout_marginTop="5dp"/>
         <TextView
             android:layout_below="@+id/poster_ivent_user"
             android:id="@+id/tv_nama_ivent_user"
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mulai Berlaku"/>
+                    android:text="Berlaku Bulan"/>
                 <TextView
                     android:id="@+id/tv_tglsam_evnt"
                     android:layout_width="wrap_content"
@@ -55,6 +55,17 @@
                     android:hint="5 Dec 2018"/>
             </LinearLayout>
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:checked="true"
+            android:text="Status" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

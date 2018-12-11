@@ -1,6 +1,7 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -49,7 +50,8 @@ public class SettingAdmin extends Fragment {
         btn_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frament_container_admin,new Event_manager()).addToBackStack(null).commit();
+                Intent i =new Intent(getContext(),Event_manager.class);
+                getActivity().startActivity(i);
             }
         });
 

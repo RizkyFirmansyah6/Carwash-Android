@@ -1,9 +1,12 @@
 package com.projctwash.com.proyek2_carwash.Admin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,33 +29,38 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Event_manager extends Fragment {
+public class Event_manager extends AppCompatActivity {
 
-    View v;
     List<Event> mEvent;
     private RecyclerView mRecyclerView;
     private RecyclerAdapterEventManager mAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_event_manager, container, false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_event_manager);
 
         init_recyclerEvent();
         init_listener();
-        return v;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        init_recyclerEvent();
     }
 
     private void init_recyclerEvent() {
         final ApiInterface mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-        mRecyclerView = v.findViewById(R.id.recycler_eventmanager_admin);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mRecyclerView = findViewById(R.id.recycler_eventmanager_admin);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
         Call<GetEvent> getEvnt = mApiInterface.getEventAdmin();
         getEvnt.enqueue(new Callback<GetEvent>() {
             @Override
             public void onResponse(Call<GetEvent> call, Response<GetEvent> response) {
                 mEvent = response.body().getListDataEvent();
-                mAdapter = new RecyclerAdapterEventManager(mEvent, getContext());
+                mAdapter = new RecyclerAdapterEventManager(mEvent,Event_manager.this );
                 mRecyclerView.setAdapter(mAdapter);
             }
 
@@ -64,12 +72,12 @@ public class Event_manager extends Fragment {
     }
 
     void init_listener(){
-        FloatingActionButton btn_add = v.findViewById(R.id.btn_addevent);
+        FloatingActionButton btn_add = findViewById(R.id.btn_addevent);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.frament_container_admin,new new_event()).addToBackStack(null).commit();
+                Intent i = new Intent(getApplicationContext(),new_event.class);
+                startActivity(i);
             }
         });
     }

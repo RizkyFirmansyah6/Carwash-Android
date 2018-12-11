@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.Admin.cud;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,12 @@ public class NewJenisMotorActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ProgressDialog process = new ProgressDialog(NewJenisMotorActivity.this);
+                process.setTitle("Processing");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostPutDellKendaraan> newJnsKendaraan = mApiInterface.postKendaraan(
                         nama.getText().toString(),
                         harga.getText().toString(),
@@ -65,12 +72,13 @@ public class NewJenisMotorActivity extends AppCompatActivity {
                     public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess",Toast.LENGTH_SHORT).show();
                         finish();
+                        process.hide();
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
-
+                        process.hide();
                     }
                 });
             }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.projctwash.com.proyek2_carwash.Model.Event;
 import com.projctwash.com.proyek2_carwash.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,7 +35,11 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
         Event evnt = mEvent.get(position);
-//        Glide.with(mCon).asBitmap().load(evnt.getImg()).into(holder.img_poster);
+        Picasso.get()
+                .load(evnt.getImg())
+//              .placeholder(R.drawable.user_placeholder)
+                .error(R.drawable.ic_error)
+                .into(holder.img_poster);
         holder.tx_nama.setText(evnt.getNama_event());
         holder.tx_tgl.setText(evnt.getBulan());
     }

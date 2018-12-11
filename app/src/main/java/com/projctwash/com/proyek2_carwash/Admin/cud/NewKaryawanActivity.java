@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.Admin.cud;
 
+import android.app.ProgressDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,12 @@ public class NewKaryawanActivity extends AppCompatActivity {
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog process = new ProgressDialog(NewKaryawanActivity.this);
+                process.setTitle("Processing");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostPutDellKaryawan> newKar = mApiInterface.postKaryawan(
                                                                                 nama.getText().toString(),
                                                                                 nohp.getText().toString(),
@@ -47,11 +54,13 @@ public class NewKaryawanActivity extends AppCompatActivity {
                     public void onResponse(Call<PostPutDellKaryawan> call, Response<PostPutDellKaryawan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess Ditambah",Toast.LENGTH_SHORT).show();
                         finish();
+                        process.hide();
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDellKaryawan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
+                        process.hide();
                     }
                 });
 

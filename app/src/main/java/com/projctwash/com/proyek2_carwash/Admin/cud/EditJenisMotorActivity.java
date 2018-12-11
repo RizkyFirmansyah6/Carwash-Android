@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.Admin.cud;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.projctwash.com.proyek2_carwash.Model.PostPutDellKendaraan;
 import com.projctwash.com.proyek2_carwash.R;
 import com.projctwash.com.proyek2_carwash.Rest.ApiClient;
 import com.projctwash.com.proyek2_carwash.Rest.ApiInterface;
+import com.projctwash.com.proyek2_carwash.User.UserKonfirmasiActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,6 +68,12 @@ public class EditJenisMotorActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ProgressDialog process = new ProgressDialog(EditJenisMotorActivity.this);
+                process.setTitle("Processing");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostPutDellKendaraan> updateJnsKendaraan = mApiInterface.putKendaraan(
                                     intn.getStringExtra("id"),
                                     nama.getText().toString(),
@@ -77,12 +85,13 @@ public class EditJenisMotorActivity extends AppCompatActivity {
                     public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                         Toast.makeText(getApplicationContext(),"Suksess",Toast.LENGTH_SHORT).show();
                         finish();
+                        process.hide();
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
-
+                        process.hide();
                     }
                 });
             }
@@ -98,16 +107,24 @@ public class EditJenisMotorActivity extends AppCompatActivity {
                 alertDlg.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog process = new ProgressDialog(EditJenisMotorActivity.this);
+                        process.setTitle("Processing");
+                        process.setMessage("Please Wait..");
+                        process.setCancelable(false);
+                        process.show();
+
                         Call<PostPutDellKendaraan> deletekendaraan = mApiInterface.deleteKendaraan(intn.getStringExtra("id"));
                         deletekendaraan.enqueue(new Callback<PostPutDellKendaraan>() {
                             @Override
                             public void onResponse(Call<PostPutDellKendaraan> call, Response<PostPutDellKendaraan> response) {
                                 finish();
+                                process.hide();
                             }
 
                             @Override
                             public void onFailure(Call<PostPutDellKendaraan> call, Throwable t) {
                                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                                process.hide();
                             }
                         });
                     }
