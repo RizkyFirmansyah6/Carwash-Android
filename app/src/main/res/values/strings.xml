@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Wash</string>
+    <string name="app_name">Motor Wash</string>
 
     <string-array name="sortby">
         <item>Hari ini</item>
