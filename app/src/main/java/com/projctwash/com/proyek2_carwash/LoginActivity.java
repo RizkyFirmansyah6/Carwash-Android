@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.projctwash.com.proyek2_carwash.Admin.AdminMainActivity;
+import com.projctwash.com.proyek2_carwash.Admin.cud.NewJenisMotorActivity;
 import com.projctwash.com.proyek2_carwash.Config.SessionManagement;
 import com.projctwash.com.proyek2_carwash.Model.Karyawan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKaryawan;
@@ -59,6 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ProgressDialog process = new ProgressDialog(LoginActivity.this);
+                process.setTitle("Login");
+                process.setMessage("Please Wait..");
+                process.setCancelable(false);
+                process.show();
+
                 Call<PostPutDellKaryawan> getlogin = mApiInterface.getLogin( nohp.getText().toString(), pas.getText().toString());
                 getlogin.enqueue(new Callback<PostPutDellKaryawan>() {
                     @Override
@@ -73,19 +81,23 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(),AdminMainActivity.class);
                                 startActivity(i);
                                 finish();
+                                process.hide();
                             }else  {
                                 Intent i = new Intent(getApplicationContext(),MainUserActivity.class);
                                 startActivity(i);
                                 finish();
+                                process.hide();
                             }
                         }else {
-                            Toast.makeText(getApplicationContext(),"fail login",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"No Hp atau Password salah",Toast.LENGTH_SHORT).show();
+                            process.hide();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDellKaryawan> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),"error "+t,Toast.LENGTH_SHORT).show();
+                        process.hide();
                     }
                 });
             }
