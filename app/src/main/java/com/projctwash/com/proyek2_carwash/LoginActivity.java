@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,8 +27,9 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    FloatingActionButton btn_login,btn_exit;
+    //FloatingActionButton btn_login,btn_exit;
     EditText nohp,pas;
+    Button btn_login;
     ApiInterface mApiInterface;
     //    sesion management
     SessionManagement mSesion;
@@ -37,8 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
 
-        btn_login = findViewById(R.id.btn_loginkar);
-        btn_exit = findViewById(R.id.btn_back);
+        //btn_login = findViewById(R.id.btn_loginkar);
+//        btn_exit = findViewById(R.id.btn_back);
+        btn_login = findViewById(R.id.btn_login);
         nohp = findViewById(R.id.et_nohplogin);
         pas = findViewById(R.id.et_passlogin);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -102,11 +105,11 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-        btn_exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        btn_exit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
     }
 }

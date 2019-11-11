@@ -56,35 +56,45 @@
             android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3">
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btn_back"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:src="@drawable/back"
-                app:backgroundTint="@android:color/holo_red_dark" />
-            <View
-                android:layout_weight="1"
-                android:layout_width="60dp"
-                android:layout_height="60dp" />
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                app:backgroundTint="#63C6B3"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/icbtn_login_mini"/>
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btn_loginkar"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/icbtn_login"
-                app:backgroundTint="#63C6B3"/>
+<!--            <android.support.design.widget.FloatingActionButton-->
+<!--                android:id="@+id/btn_back"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:clickable="true"-->
+<!--                android:foreground="?android:attr/selectableItemBackground"-->
+<!--                android:src="@drawable/back"-->
+<!--                app:backgroundTint="@android:color/holo_red_dark" />-->
+<!--            <View-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp" />-->
+
+<!--            <android.support.design.widget.FloatingActionButton-->
+<!--                android:id="@+id/btn_loginkar"-->
+<!--                android:clickable="true"-->
+<!--                android:foreground="?android:attr/selectableItemBackground"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:src="@drawable/icbtn_login"-->
+<!--                app:backgroundTint="#63C6B3"/>-->
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

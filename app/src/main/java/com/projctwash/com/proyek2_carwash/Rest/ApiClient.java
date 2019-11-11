@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     //https://projectcarwashservice.000webhostapp.com/index.php/
-    public static final String BASE_URL = "https://projectcarwashservice.000webhostapp.com/index.php/";
+    public static final String BASE_URL = "https://projectcarwash.000webhostapp.com/index.php/";
     private static Retrofit retrofit = null;
     public static Retrofit getClient() {
         if (retrofit==null) {
