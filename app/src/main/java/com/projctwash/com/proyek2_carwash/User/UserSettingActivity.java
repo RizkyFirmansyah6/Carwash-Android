@@ -1,5 +1,6 @@
 package com.projctwash.com.proyek2_carwash.User;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 
 public class UserSettingActivity extends AppCompatActivity {
     Button btn_exit;
+    Button btn_member;
     //    sesion management
     HashMap<String,String> user;
     SessionManagement mSesion;
@@ -22,6 +24,7 @@ public class UserSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_setting);
 
         btn_exit =findViewById(R.id.btn_logout);
+        btn_member =findViewById(R.id.btn_member);
         //        get sesion
         mSesion = new SessionManagement(this);
         user = mSesion.getUserInformation();
@@ -31,6 +34,13 @@ public class UserSettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mSesion.logoutUser();
                 finish();
+            }
+        });
+
+        btn_member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),UserMemberActivity.class));
             }
         });
     }

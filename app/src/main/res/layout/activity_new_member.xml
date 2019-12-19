@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewMemberActivity">
+
+    <LinearLayout
+        android:id="@+id/lay_fommebr"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"/>
+        <EditText
+            android:id="@+id/et_namamember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="11"
+            android:inputType="textPersonName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Telp"/>
+        <EditText
+            android:id="@+id/et_notelpmember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="11"
+            android:inputType="phone"
+            android:maxLength="14"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat" />
+        <EditText
+            android:id="@+id/et_alamatmember"
+            android:inputType="text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipe"/>
+        <Spinner
+            android:id="@+id/sp_tipemember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/member_arrays"
+            android:prompt="@string/member_prompt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/lay_fommebr"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_backmember"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/back"
+            android:layout_margin="5dp"/>
+        <View
+            android:layout_weight="1"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_createmember"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/user_add"
+            app:backgroundTint="#63C6B3"/>
+    </LinearLayout>
+
+</RelativeLayout>

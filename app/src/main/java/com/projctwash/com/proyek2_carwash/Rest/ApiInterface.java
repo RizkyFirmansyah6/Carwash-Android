@@ -6,11 +6,13 @@ import com.projctwash.com.proyek2_carwash.Model.GetEvent;
 import com.projctwash.com.proyek2_carwash.Model.GetKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.GetKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.GetKondisi;
+import com.projctwash.com.proyek2_carwash.Model.GetMember;
 import com.projctwash.com.proyek2_carwash.Model.GetTransaksi;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellEvent;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKaryawan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKendaraan;
 import com.projctwash.com.proyek2_carwash.Model.PostPutDellKondisi;
+import com.projctwash.com.proyek2_carwash.Model.PostPutDellMember;
 import com.projctwash.com.proyek2_carwash.Model.PostputDellTransaksi;
 
 import retrofit2.Call;
@@ -49,7 +51,29 @@ public interface ApiInterface {
     Call<PostPutDellKendaraan> deleteKendaraan(@Field("id") String id);
 //      Kendaraan END
 
-//    Karyawan Start
+//    Member Start
+    @GET("Member")
+    Call<GetMember> getMember();
+
+    @FormUrlEncoded
+    @POST("Member")
+    Call<PostPutDellMember> postMember(@Field("nama") String nama,
+                                         @Field("no_telp") String no_telp,
+                                         @Field("alamat") String alamat,
+                                         @Field("jenis") String jenis);
+    @FormUrlEncoded
+    @PUT("Member")
+    Call<PostPutDellMember> putMember(@Field("id") String id,
+                                          @Field("nama") String nama,
+                                          @Field("no_telp") String no_telp,
+                                          @Field("alamat") String alamat,
+                                          @Field("jenis") String jenis);
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "Member", hasBody = true)
+    Call<PostPutDellMember> deleteMember(@Field("id") String id);
+//  Karyawan END
+
+    //    Karyawan Start
     @GET("Karyawan")
     Call<GetKaryawan> getKaryawan();
 
@@ -72,7 +96,6 @@ public interface ApiInterface {
     @HTTP(method = "DELETE", path = "Karyawan", hasBody = true)
     Call<PostPutDellKaryawan> deleteKaryawan(@Field("id") String id);
 //  Karyawan END
-
 
 //    Kondisi Motor Start
     @GET("Kondisi")

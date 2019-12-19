@@ -11,22 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NewMemberActivity"></activity>
+        <activity android:name=".User.UserMemberActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- lay admin -->
+        </activity> <!-- lay admin -->
         <activity android:name=".Admin.AdminMainActivity" />
         <activity android:name=".Admin.cud.EditJenisMotorActivity" />
         <activity android:name=".Admin.cud.NewJenisMotorActivity" />
         <activity android:name=".Admin.cud.NewKaryawanActivity" />
         <activity android:name=".Admin.cud.EditKaryawanActivity" />
         <activity android:name=".Admin.Event_manager" />
-        <activity android:name=".Admin.cud.new_event" />
-        <!-- lay users -->
+        <activity android:name=".Admin.cud.new_event" /> <!-- lay users -->
         <activity android:name=".User.MainUserActivity" />
         <activity android:name=".User.UserPilihKendaraanActivity" />
         <activity android:name=".User.UserKondisiActivity" />
